@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "https://my-json-server.typicode.com/felipey2010/contactDB/",
+  baseURL: "http://localhost:8000/",
 });
