@@ -93,10 +93,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .home-body-empty h2 {
   font-size: 22px;
+}
+
+.home-body-empty svg {
+  width: 85px;
+  height: 85px;
 }
 
 /* End of Home Page CSS */
@@ -122,11 +128,13 @@
   width: 75%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .contact-list-details p {
   margin-left: 12px;
+  width: 75%;
+  border-right: 1px solid var(--button-color);
 }
 
 .contact-list-details-user img {
@@ -137,10 +145,14 @@
 
 .contact-list-details-user {
   display: flex;
+  width: 65%;
+  align-items: center;
 }
 
 .contact-list-details-phone {
   display: flex;
+  width: 35%;
+  align-items: center;
 }
 
 .space-between {

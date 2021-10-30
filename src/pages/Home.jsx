@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AppDetails } from "../utils/AppContext";
 import ContactList from "../components/ContactList";
+import { FaFileAlt } from "react-icons/fa";
 
 export default function Home() {
   //Access Global variables using useContext
@@ -56,6 +57,7 @@ export default function Home() {
               </>
             ) : (
               <div className="home-body-empty">
+                <FaFileAlt />
                 <h2>Empty Contact List</h2>
               </div>
             )}
