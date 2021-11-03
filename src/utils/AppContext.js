@@ -6,7 +6,7 @@ export const AppDetails = createContext();
 
 const AppContext = ({ children }) => {
   //Global Variables
-  const [contacts, setContacts] = useState(null);
+  const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -100,6 +100,7 @@ const AppContext = ({ children }) => {
       })
       .catch(error => {
         console.log(error);
+        setContacts([]);
       });
   }
 
