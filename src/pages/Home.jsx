@@ -58,7 +58,7 @@ export default function Home() {
             ) : (
               <div className="home-body-empty">
                 <FaFileAlt />
-                <h2>Empty Contact List</h2>
+                <h2>Contact List Empty</h2>
               </div>
             )}
           </div>
