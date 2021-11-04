@@ -22,11 +22,11 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-    "gen": "react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "db": "json-server -p 8000 -w data/db.json",
-    "build": "npm-run-all --parallel gen dev db"
+    "start": "npm-run-all --parallel dev db"
   },
   "eslintConfig": {
     "extends": [
