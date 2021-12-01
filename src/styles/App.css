@@ -60,10 +60,19 @@
   text-align: center;
 }
 
-.home-top2-container button {
+.home-top2-container .buttons-div {
+  width: 132px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
   margin: 12px;
-  width: 100px;
+}
+
+.home-top2-container .buttons-div button {
+  min-width: 100px;
   height: 35px;
+  padding: 4px;
   border-radius: 10px;
   outline: none;
   border: 1px solid var(--button-color);
@@ -75,8 +84,17 @@
   transition: all 0.2s ease-in;
 }
 
-.home-top2-container button:hover {
+.home-top2-container .buttons-div button:hover {
   background-color: #3e456e;
+}
+
+.home-top2-container .buttons-div svg {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: var(--color);
+  outline: none;
+  margin-left: 8px;
 }
 
 .home-body {

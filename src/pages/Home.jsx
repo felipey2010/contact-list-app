@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { AppDetails } from "../utils/AppContext";
 import ContactList from "../components/ContactList";
 import { FaFileAlt } from "react-icons/fa";
+import { MdClear } from "react-icons/md";
 
 export default function Home() {
   //Access Global variables using useContext
@@ -14,6 +15,8 @@ export default function Home() {
     setPhoneNumber,
     AddContact,
     buttonText,
+    clearInput,
+    activateClear,
   } = useContext(AppDetails);
 
   return (
@@ -42,7 +45,10 @@ export default function Home() {
                 value={phoneNumber}
                 onChange={e => setPhoneNumber(e.target.value)}
               />
-              <button onClick={() => AddContact()}>{buttonText}</button>
+              <div className="buttons-div">
+                <button onClick={() => AddContact()}>{buttonText}</button>
+                {activateClear && <MdClear onClick={() => clearInput()} />}
+              </div>
             </div>
           </div>
           <div className="home-body">

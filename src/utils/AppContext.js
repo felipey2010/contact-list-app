@@ -12,6 +12,7 @@ const AppContext = ({ children }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [buttonText, setButtonText] = useState("Add");
   const [id, setID] = useState("");
+  const [activateClear, setActivateClear] = useState(false);
 
   //Notification
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -89,34 +90,45 @@ const AppContext = ({ children }) => {
     setID(id);
     setName(name);
     setPhoneNumber(phone);
+    setActivateClear(true);
   }
 
   async function getContacts() {
     await api
       .get("contacts")
       .then(res => {
-        console.log(res.data);
         setContacts(res.data);
       })
       .catch(error => {
         console.log(error);
         setContacts([]);
+      })
+      .then(() => {
+        setLoading(false);
       });
   }
 
-  //Loading function
-  function loadPage() {
-    setLoading(true);
-    //Clear loading screen after 2 seconds
-    const timeoutId = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    return () => clearTimeout(timeoutId);
+  function clearInput() {
+    setName("");
+    setPhoneNumber("");
+    setID("");
+    setButtonText("Add");
+    setActivateClear(false);
   }
 
+  //Loading function
+  // function loadPage() {
+  //   setLoading(true);
+  //   //Clear loading screen after 2 seconds
+  //   const timeoutId = setTimeout(() => {
+  //     setLoading(false);
+  //   }, 2000);
+  //   return () => clearTimeout(timeoutId);
+  // }
+
   useEffect(() => {
+    setLoading(true);
     getContacts();
-    loadPage();
   }, []);
 
   return (
@@ -138,6 +150,8 @@ const AppContext = ({ children }) => {
         handleEdit,
         id,
         setID,
+        clearInput,
+        activateClear,
       }}>
       {children}
     </AppDetails.Provider>

@@ -21,10 +21,10 @@ export default function ContactList({ contact }) {
       <div className="contact-list-buttons">
         <div className="contact-list-buttons-divider"></div>
         <FaPen
-          onClick={() => handleEdit(contact.name, contact.phone, contact.id)}
+          onClick={() => handleEdit(contact.name, contact.phone, contact._id)}
         />
         <div className="contact-list-buttons-divider"></div>
-        <FaTrash onClick={() => handleDelete(contact.id)} />
+        <FaTrash onClick={() => handleDelete(contact._id)} />
       </div>
     </div>
   );
