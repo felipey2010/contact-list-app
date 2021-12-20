@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect } from "react";
-import api from "./api";
+import axios from "axios";
 import { useSnackbar } from "notistack";
 
 export const AppDetails = createContext();
@@ -26,7 +26,7 @@ const AppContext = ({ children }) => {
 
     if (name !== "" && phoneNumber !== "") {
       if (buttonText === "Add") {
-        await api
+        await axios
           .post("contacts", data)
           .then(() => {
             getContacts();
@@ -39,7 +39,7 @@ const AppContext = ({ children }) => {
             showNotification("Unable to add contact", "error");
           });
       } else if (buttonText === "Update") {
-        await api
+        await axios
           .put("contacts/" + id, data)
           .then(() => {
             setButtonText("Add");
@@ -72,7 +72,7 @@ const AppContext = ({ children }) => {
   //Delete function
   async function handleDelete(id) {
     closeSnackbar();
-    await api
+    await axios
       .delete("contacts/" + id)
       .then(() => {
         showNotification("Contact deleted", "success");
@@ -94,7 +94,7 @@ const AppContext = ({ children }) => {
   }
 
   async function getContacts() {
-    await api
+    await axios
       .get("contacts")
       .then(res => {
         setContacts(res.data);

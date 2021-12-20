@@ -3,6 +3,9 @@ import ReactDOM from "react-dom";
 import "./styles/index.css";
 import App from "./App";
 import { SnackbarProvider } from "notistack";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://api-contact-app.herokuapp.com/api/";
 
 ReactDOM.render(
   <React.StrictMode>
