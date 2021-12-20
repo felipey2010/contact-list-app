@@ -116,16 +116,6 @@ const AppContext = ({ children }) => {
     setActivateClear(false);
   }
 
-  //Loading function
-  // function loadPage() {
-  //   setLoading(true);
-  //   //Clear loading screen after 2 seconds
-  //   const timeoutId = setTimeout(() => {
-  //     setLoading(false);
-  //   }, 2000);
-  //   return () => clearTimeout(timeoutId);
-  // }
-
   useEffect(() => {
     setLoading(true);
     getContacts();
