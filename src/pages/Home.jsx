@@ -1,75 +1,92 @@
-import { useContext } from "react";
-import { AppDetails } from "../utils/AppContext";
-import ContactList from "../components/ContactList";
-import { FaFileAlt } from "react-icons/fa";
-import { MdClear } from "react-icons/md";
+import React from 'react'
+import { FaFileAlt } from 'react-icons/fa'
+import { MdClear } from 'react-icons/md'
+import ContactList from '../components/ContactList'
+import { useApp } from '../utils/AppContext'
+import { useForm } from 'react-hook-form'
 
 export default function Home() {
   //Access Global variables using useContext
   const {
-    loading,
     contacts,
-    name,
-    setName,
-    phoneNumber,
-    setPhoneNumber,
-    AddContact,
-    buttonText,
+    addContact,
     clearInput,
     activateClear,
-  } = useContext(AppDetails);
+    setActivateClear,
+    setSelectedContact,
+    handleDelete,
+  } = useApp()
+  const { register, handleSubmit, reset, setValue } = useForm({
+    defaultValues: {
+      name: '',
+      phoneNumber: '',
+    },
+  })
+
+  function onSubmit(data) {
+    addContact(data)
+    reset()
+  }
+
+  function handleEdit(contact) {
+    setSelectedContact(contact)
+    setValue('name', contact.name)
+    setValue('phoneNumber', contact.phoneNumber)
+    setActivateClear(true)
+  }
 
   return (
-    <>
-      {loading ? (
-        <></>
-      ) : (
-        <div className="home-container">
-          <div className="home-top1-container">
-            <h2>Contact Manager</h2>
-          </div>
-          <div className="home-top2-container">
-            <div className="top2-inner-container">
-              <input
-                type="text"
-                required
-                placeholder="name"
-                autoFocus
-                value={name}
-                onChange={e => setName(e.target.value)}
-              />
-              <input
-                type="text"
-                required
-                placeholder="phone number"
-                value={phoneNumber}
-                onChange={e => setPhoneNumber(e.target.value)}
-              />
-              <div className="buttons-div">
-                <button onClick={() => AddContact()}>{buttonText}</button>
-                {activateClear && <MdClear onClick={() => clearInput()} />}
-              </div>
-            </div>
-          </div>
-          <div className="home-body">
-            {contacts.length > 0 ? (
-              <>
-                {contacts
-                  .slice(0)
-                  .reverse()
-                  .map((item, index) => {
-                    return <ContactList contact={item} key={index} />;
-                  })}
-              </>
-            ) : (
-              <div className="home-body-empty">
-                <FaFileAlt />
-                <h2>Contact List Empty</h2>
-              </div>
-            )}
+    <div className="home-container">
+      <div className="home-top1-container">
+        <h2>Contact Manager</h2>
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="home-top2-container">
+        <div className="top2-inner-container">
+          <input
+            type="text"
+            required
+            placeholder="name"
+            autoFocus
+            autoComplete="off"
+            {...register('name', { required: true })}
+          />
+          <input
+            type="text"
+            required
+            placeholder="phone number"
+            autoComplete="off"
+            {...register('phoneNumber', { required: true })}
+          />
+          <div className="buttons-div">
+            <button type="submit">Add</button>
+            {activateClear && <MdClear onClick={() => clearInput()} />}
           </div>
         </div>
-      )}
-    </>
-  );
+      </form>
+      <div className="home-body">
+        {contacts.length > 0 ? (
+          <>
+            {contacts
+              .slice(0)
+              .reverse()
+              .map((item, index) => {
+                return (
+                  <ContactList
+                    contact={item}
+                    key={index}
+                    handleDelete={handleDelete}
+                    handleEdit={handleEdit}
+                  />
+                )
+              })}
+          </>
+        ) : (
+          <div className="home-body-empty">
+            <FaFileAlt />
+            <h2>Contact List Empty</h2>
+          </div>
+        )}
+      </div>
+    </div>
+  )
 }

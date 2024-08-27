@@ -1,19 +1,20 @@
-import "./styles/App.css";
-import { Suspense, lazy } from "react";
-import Loading from "./components/Loading";
-import AppContext from "./utils/AppContext";
+import React, { Suspense, lazy } from 'react'
+import CookieConsent from './components/CookieConsent'
+import Loading from './components/Loading'
+import './styles/App.css'
+import AppContext from './utils/AppContext'
 
-const Home = lazy(() => import("./pages/Home"));
+const Home = lazy(() => import('./pages/Home'))
 
 function App() {
   return (
-    <Suspense fallback={<div className="error-loading">Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <AppContext>
-        <Loading />
         <Home />
+        <CookieConsent />
       </AppContext>
     </Suspense>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -183,6 +183,8 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  gap: 4px;
+  padding: 0 8px;
 }
 
 .contact-list-buttons svg {
@@ -202,4 +204,23 @@
   .contact-list-container {
     width: 97%;
   }
+}
+
+.action-button {
+  background-color: var(--button-background);
+  color: var(--color);
+  width: 32px;
+  height: 32px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.action-button:hover {
+  background-color: #3e456e;
+  border: 1px solid var(--button-color);
 }
