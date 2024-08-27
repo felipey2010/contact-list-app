@@ -49,7 +49,7 @@ export default function AppProvider({ children }) {
     setContacts(updatedContacts)
     setLocalStorage(updatedContacts)
     clearInput()
-    setSelectedContact(null) // Clear selected contact after adding/updating
+    setSelectedContact(null)
   }
 
   //Delete function
